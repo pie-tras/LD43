@@ -5,6 +5,7 @@ import org.lwjgl.glfw.GLFW;
 
 import com.draglantix.assets.Assets;
 import com.draglantix.font.Message;
+import com.draglantix.graphics.Texture;
 import com.draglantix.main.Configs;
 import com.draglantix.util.Color;
 import com.draglantix.window.Window;
@@ -18,9 +19,11 @@ public class MenuState extends GameState{
 	@Override
 	public void load() {
 		super.load();
+		addObjects(assets.darklandsArch);
 		addMessages(new Message(Configs.TITLE, new Vector2f(0, 250), new Vector2f(26, 26), new Color(0, 1, .2f, 1), 40, false, assets.font),
 				new Message("Start", new Vector2f(0, 0), new Vector2f(32, 32), new Color(1, 1, 1, 1), 40, false, assets.font),
 				new Message("Quit", new Vector2f(0, -100), new Vector2f(32, 32), new Color(1, 1, 1, 1), 40, false, assets.font));
+		
 	}
 
 	@Override

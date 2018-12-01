@@ -11,6 +11,7 @@ import com.draglantix.graphics.Animation;
 import com.draglantix.graphics.SpriteSheet;
 import com.draglantix.graphics.Texture;
 import com.draglantix.guis.Gui;
+import com.draglantix.main.Configs;
 import com.draglantix.states.GameStateManager;
 import com.draglantix.states.State;
 import com.draglantix.util.Color;
@@ -32,6 +33,9 @@ public class Assets {
 	public Gui draglantixLogo, storyGui;
 	
 	//////Menu/////////
+	
+	public Texture darklandsArchTex;
+	public Gui darklandsArch;
 	
 	//////Play/////////
 	
@@ -70,11 +74,12 @@ public class Assets {
 	}
 	
 	private void loadMenu() {
-		
+		darklandsArchTex = new Texture("darklandsArch");
+		darklandsArch = new Gui(darklandsArchTex, new Vector2f(-10,0), new Vector2f(0, 0), new Vector2f(Configs.WIDTH/2 + 10, Configs.HEIGHT/2), new Color(1, 1, 1, 1));
 	}
 
 	private void unloadMenu() {
-		
+		darklandsArch = null;
 	}
 	
 	private void loadPlay() {
