@@ -6,7 +6,7 @@ import com.draglantix.states.State;
 public class Main {
 	
 	public Main() {
-		GameStateManager gsm = new GameStateManager(State.PLAY);
+		GameStateManager gsm = new GameStateManager(State.INTRO);
 		new SparkEngine(gsm, Configs.WIDTH, Configs.HEIGHT, Configs.TITLE + Configs.VERSION, Configs.PRINT_FPS);
 	}
 	
