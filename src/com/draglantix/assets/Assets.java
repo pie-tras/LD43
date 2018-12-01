@@ -5,6 +5,7 @@ import org.joml.Vector2f;
 import com.draglantix.audio.AudioMaster;
 import com.draglantix.audio.Source;
 import com.draglantix.camera.Camera;
+import com.draglantix.entities.Player;
 import com.draglantix.font.Font;
 import com.draglantix.graphics.Animation;
 import com.draglantix.graphics.SpriteSheet;
@@ -34,7 +35,15 @@ public class Assets {
 	
 	//////Play/////////
 	
-	public SpriteSheet tiles;
+	public SpriteSheet tileSheet;
+	public SpriteSheet psID, psIU, psIL, psIR, psD, psU, psL, psR;
+	public Animation IplayerLAnim, IplayerRAnim, IplayerUAnim, IplayerDAnim,
+					playerLAnim, playerRAnim, playerUAnim, playerDAnim,
+					monsterLAnim, monsterRAnim, monsterUAnim, monsterDAnim;
+	
+	public Color[] playerColors;
+	
+	public Player player;
 	public Camera camera;
 	
 	public Assets() {
@@ -69,13 +78,43 @@ public class Assets {
 	}
 	
 	private void loadPlay() {
-		camera = new Camera(new Vector2f(0, 0), 0, 0, 0.07f, 10);
-		GameStateManager.getGraphics().setCurrentCamera(camera);
-		tiles = new SpriteSheet("tiles");
 		
+		tileSheet = new SpriteSheet("tiles");
+		psID = new SpriteSheet("player/playerID");
+		psIU = new SpriteSheet("player/playerIU");
+		psIL = new SpriteSheet("player/playerIL");
+		psIR = new SpriteSheet("player/playerIR");
+		
+		psD = new SpriteSheet("player/playerD");
+		psU = new SpriteSheet("player/playerU");
+		psL = new SpriteSheet("player/playerL");
+		psR = new SpriteSheet("player/playerR");
+		//monsterSheet = new SpriteSheet("monster");
+		
+		IplayerDAnim = new Animation(2, 2, 16, 2, psID, true);
+		IplayerUAnim = new Animation(2, 2, 16, 2, psIU, true);
+		IplayerLAnim = new Animation(2, 2, 16, 2, psIL, true);
+		IplayerRAnim = new Animation(2, 2, 16, 2, psIR, true);
+		
+		playerDAnim = new Animation(2, 2, 16, 12, psD, true);
+		playerUAnim = new Animation(2, 2, 16, 12, psU, true);
+		playerLAnim = new Animation(2, 2, 16, 12, psL, true);
+		playerRAnim = new Animation(2, 2, 16, 12, psR, true);
+		
+		playerColors = new Color[3];
+		
+		playerColors[0] = new Color(.3f, .3f, .3f, 1);
+		playerColors[1] = new Color(0, 1, 1, 1);
+		playerColors[2] = new Color(1, .9f, .8f, 1);
+		
+		player = new Player(IplayerDAnim, new Vector2f(0, 0), new Vector2f(0, 0), new Vector2f(32, 32), playerColors, 10f, this);
+		
+		camera = new Camera(player, new Vector2f(0, 0), 0, 0, 0.07f);
+		GameStateManager.getGraphics().setCurrentCamera(camera);
 	}
 
 	private void unloadPlay() {
+		player = null;
 		
 	}
 	

@@ -16,6 +16,7 @@ public class PlayState extends GameState{
 	public void load() {
 		super.load();
 		TileColors.load();
+		addObjects(assets.player);
 	}
 
 	@Override

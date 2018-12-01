@@ -41,6 +41,8 @@ public abstract class GameState {
 	
 	public void unload() {
 		assets.unload(state);
+		objects.removeAll(objects);
+		messages.removeAll(messages);
 	}
 	
 	public void renderScene(Graphics g) {
