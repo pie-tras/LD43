@@ -1,0 +1,10 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+p, select {
+    margin: 5;
+    padding: 0;
+    position: relative;
+}
