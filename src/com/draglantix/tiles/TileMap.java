@@ -1,24 +1,45 @@
 package com.draglantix.tiles;
 
-import org.joml.Vector2f;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.draglantix.assets.Assets;
-import com.draglantix.world.World;
 
 public class TileMap {
 	
 	private Tile[][] map;
 	
-	public TileMap(Assets assets, int width, int height, int[][] data) {
-		TileManager manager = new TileManager(assets.tiles);
-		
+	private TileManager manager;
+	
+	public TileMap(Assets assets, int width, int height) {
+		manager = new TileManager(assets.tileSheet, 16, 16);
 		map = new Tile[width][height];
-		for(int x = 0; x < map.length; x++) {
-			for(int y = 0; y < map[x].length; y++) {
-				Vector2f pos = new Vector2f(x * World.TILE_SIZE * World.SCALE, y * World.TILE_SIZE * World.SCALE);
-				map[x][y] = manager.getTile(0, pos, new Vector2f(World.TILE_SIZE * World.SCALE));
+	}
+	
+	public Tile getTile(int x, int y) {
+		return map[x][y];
+	}
+	
+	public TileManager getTileManager() {
+		return manager;
+	}
+	
+	public Tile[][] getTiles() {
+		return map;
+	}
+	
+	public List<Tile> getTileList() {
+		List<Tile> tiles = new ArrayList<Tile>();
+		for(int i = 0; i < map.length; i++) {
+			for(int j = 0; j < map.length; j++) {
+				tiles.add(map[i][j]);
 			}
 		}
+		return tiles;
+	}
+	
+	public void setTile(int x, int y, Tile tile) {
+		map[x][y] = tile;
 	}
 
 }

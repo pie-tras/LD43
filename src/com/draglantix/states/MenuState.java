@@ -5,7 +5,6 @@ import org.lwjgl.glfw.GLFW;
 
 import com.draglantix.assets.Assets;
 import com.draglantix.font.Message;
-import com.draglantix.graphics.Texture;
 import com.draglantix.main.Configs;
 import com.draglantix.util.Color;
 import com.draglantix.window.Window;
