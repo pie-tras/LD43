@@ -5,6 +5,7 @@ import org.joml.Vector2f;
 import com.draglantix.audio.AudioMaster;
 import com.draglantix.audio.Source;
 import com.draglantix.camera.Camera;
+import com.draglantix.entities.Enemy;
 import com.draglantix.entities.Player;
 import com.draglantix.font.Font;
 import com.draglantix.graphics.Animation;
@@ -41,13 +42,18 @@ public class Assets {
 	
 	public SpriteSheet tileSheet;
 	public SpriteSheet psID, psIU, psIL, psIR, psD, psU, psL, psR;
+	public SpriteSheet enID, enIU, enIL, enIR, enD, enU, enL, enR;
 	public Animation IplayerLAnim, IplayerRAnim, IplayerUAnim, IplayerDAnim,
 					playerLAnim, playerRAnim, playerUAnim, playerDAnim,
-					monsterLAnim, monsterRAnim, monsterUAnim, monsterDAnim;
+					monsterLAnim, monsterRAnim, monsterUAnim, monsterDAnim, IenemyLAnim, IenemyRAnim, IenemyUAnim, IenemyDAnim,
+					enemyLAnim, enemyRAnim, enemyUAnim, enemyDAnim;
 	
 	public Color[] playerColors;
 	
+	public Color[] enemyColors;
+	
 	public Player player;
+	public Enemy enemy;
 	public Camera camera;
 	
 	public Assets() {
@@ -114,13 +120,43 @@ public class Assets {
 		
 		player = new Player(IplayerDAnim, new Vector2f(0, 0), new Vector2f(0, 0), new Vector2f(32, 32), playerColors, 10f, this);
 		
+		//Enemy Load
+		enID = new SpriteSheet("enemy/enemyID");
+		enIU = new SpriteSheet("enemy/enemyIU");
+		enIL = new SpriteSheet("enemy/enemyIL");
+		enIR = new SpriteSheet("enemy/enemyIR");
+		
+		enD = new SpriteSheet("enemy/enemyD");
+		enU = new SpriteSheet("enemy/enemyU");
+		enL = new SpriteSheet("enemy/enemyL");
+		enR = new SpriteSheet("enemy/enemyR");
+		
+		IenemyDAnim = new Animation(2, 2, 16, 2, enID, true);
+		IenemyUAnim = new Animation(2, 2, 16, 2, enIU, true);
+		IenemyLAnim = new Animation(2, 2, 16, 2, enIL, true);
+		IenemyRAnim = new Animation(2, 2, 16, 2, enIR, true);
+		
+		enemyDAnim = new Animation(2, 2, 16, 12, enD, true);
+		enemyUAnim = new Animation(2, 2, 16, 12, enU, true);
+		enemyLAnim = new Animation(2, 2, 16, 12, enL, true);
+		enemyRAnim = new Animation(2, 2, 16, 12, enR, true);
+		
+		enemyColors = new Color[3];
+		
+		enemyColors[0] = new Color(.3f, .3f, .3f, 1);
+		enemyColors[1] = new Color(0, 1, 1, 1);
+		enemyColors[2] = new Color(1, .9f, .8f, 1);
+		
+		enemy = new Enemy(IenemyDAnim, new Vector2f(0, 0), new Vector2f(0, 0), new Vector2f(32, 32), enemyColors, 10f, this);
+		
+		
 		camera = new Camera(player, new Vector2f(0, 0), 0, 0, 0.07f);
 		GameStateManager.getGraphics().setCurrentCamera(camera);
 	}
 
 	private void unloadPlay() {
 		player = null;
-		
+		enemy = null;
 	}
 	
 	public void load(State state) {
