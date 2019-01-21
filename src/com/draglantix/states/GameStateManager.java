@@ -1,8 +1,8 @@
 package com.draglantix.states;
 
 import com.draglantix.assets.Assets;
-import com.draglantix.graphics.Graphics;
-import com.draglantix.main.GSM;
+import com.draglantix.dragonfire.graphics.Graphics;
+import com.draglantix.spark.main.GSM;
 
 public class GameStateManager extends GSM{
 
@@ -59,7 +59,7 @@ public class GameStateManager extends GSM{
 			break;
 		}
 
-		currentStateClass.load();
+		currentStateClass.load(g);
 	}
 	
 	public static void prepareRender() {
