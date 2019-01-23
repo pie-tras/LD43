@@ -138,9 +138,9 @@ public class Assets {
 
 		enemyColors = new Color[3];
 
-		enemyColors[0] = new Color(.3f, .3f, .3f, 1);
-		enemyColors[1] = new Color(0, 1, 1, 1);
-		enemyColors[2] = new Color(1, .9f, .8f, 1);
+		enemyColors[0] = new Color(.1f, .1f, .1f, .6f);
+		enemyColors[1] = new Color(.8f, 0, 0, .6f);
+		enemyColors[2] = new Color(.4f, .4f, .4f, .6f);
 	}
 
 	private void unloadPlay() {
