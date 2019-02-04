@@ -59,22 +59,32 @@ public class Player extends Entity {
 		}
 
 		if(!moved) {
-			if(last.y > 0) {
+			if(getLast().y > 0) {
 				setAnimation(assets.IplayerUAnim);
-			} else if(last.y < 0) {
+			} else if(getLast().y < 0) {
 				setAnimation(assets.IplayerDAnim);
 			}
 
-			if(last.x > 0) {
+			if(getLast().x > 0) {
 				setAnimation(assets.IplayerRAnim);
-			} else if(last.x < 0) {
+			} else if(getLast().x < 0) {
 				setAnimation(assets.IplayerLAnim);
 			}
 		}
 
 		position.add(target);
 		moved = false;
-		last = target;
+		setLast(target);
 	}
+
+	public Vector2f getLast() {
+		return last;
+	}
+
+	public void setLast(Vector2f last) {
+		this.last = last;
+	}
+	
+	
 
 }
