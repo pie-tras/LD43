@@ -16,7 +16,6 @@ public class Enemy extends Entity {
 	private float speed;
 	private boolean moved = false;
 	private Vector2f last = new Vector2f();
-	Player player = new Player(anim, last, last, colors, speed, assets);
 	
 
 	public Enemy(Animation anim, Vector2f position, Vector2f scale, Color[] colors, float speed, Assets assets) {
@@ -28,32 +27,13 @@ public class Enemy extends Entity {
 		
 	}
 
-	public void tick() {
+	public void tick(Player player) {
 		super.tick();
-		Vector2f target = new Vector2f(0, 0);
 		
-		
-		
-		Vector2f playerPos = player.getPosition();
-		
-		Vector2f destination = new Vector2f(playerPos.x - position.x, playerPos.y - position.y);
-		
-		destination.normalize(speed);
-		
-		if(destination.x < 0) {
-			target.x -= speed;
-			moved = true;
-		}
-		if(destination.x > 0) {
-			target.x += speed;
-			moved = true;
-		}
-		if(destination.y < 0) {
-			target.y -= speed;
-			moved = true;
-		}
-		if(destination.y < 0) {
-			target.y += speed;
+		Vector2f destination = player.getPosition().sub(position, new Vector2f());
+		System.out.println(destination);
+		Vector2f target = destination.normalize(speed);
+		if(target.x != 0 || target.y != 0) {
 			moved = true;
 		}
 		

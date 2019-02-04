@@ -63,7 +63,7 @@ public class World {
 		}
 
 		player.tick();
-		enemy.tick();
+		enemy.tick(player);
 
 		assets.camera.correctCamera(new Vector2f(0, 0),
 				new Vector2f(WIDTH * TILE_SIZE * SCALE, HEIGHT * TILE_SIZE * SCALE));
